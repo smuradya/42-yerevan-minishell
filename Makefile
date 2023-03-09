@@ -25,6 +25,9 @@ fclean : clean
 install:
 	cd readline-master && make clean && ./configure --prefix=${RD} && make && make install
 
+push:
+	git add . && git commit -m $ARG && git push
+
 re : fclean all
 
 .PHONY : all clean fclean re
