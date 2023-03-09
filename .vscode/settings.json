@@ -1,0 +1,32 @@
+{
+	"files.associations": {
+		"bitset": "c",
+		"chrono": "c",
+		"complex": "c",
+		"optional": "c",
+		"string_view": "c",
+		"system_error": "c",
+		"tuple": "c",
+		"type_traits": "c",
+		"util.h": "c",
+		"termios.h": "c",
+		"utils.h": "c",
+		"__node_handle": "c",
+		"minishell.h": "c",
+		"algorithm": "c",
+		"locale": "c",
+		"sstream": "c",
+		"memory": "c",
+		"utility": "c",
+		"__bit_reference": "c",
+		"__functional_base": "c",
+		"atomic": "c",
+		"__memory": "c",
+		"functional": "c",
+		"iterator": "c",
+		"limits": "c",
+		"ratio": "c",
+		"vector": "c",
+		"ostream": "c"
+	}
+}
