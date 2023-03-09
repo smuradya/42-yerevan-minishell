@@ -22,7 +22,7 @@ topdir = ..
 srcdir = .
 
 
-prefix = /Users/smuradya/Desktop/Minishell/read_line_for
+prefix = /Users/tumolabs/Desktop/minishell_1/readlinemaster
 
 datarootdir = ${prefix}/share
 
@@ -49,7 +49,7 @@ RM = rm -f
 INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
 
-BUILD_DIR = /Users/smuradya/Desktop/Minishell/readline-master
+BUILD_DIR = /Users/tumolabs/Desktop/minishell_1/readline-master
 TEXINPUTDIR = $(srcdir)
 
 MAKEINFO    = LANGUAGE= makeinfo

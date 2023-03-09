@@ -2,10 +2,10 @@ NAME1		= minishell
 SRCS		= $(shell find ./mandatory -name "*.c")
 OBJS		= ${SRCS:.c=.o}
 CC			= cc
-LFLAGS      = -L./read_line_for/lib -lreadline
+LFLAGS      = -L./readlinemaster/lib -lreadline
 INCLUDES	= ./includes
-CFLAGS		= -Wall -Werror -Wextra -I./read_line_for/include  -fsanitize=address -g
-RD 			= ${shell find ${HOME} -name read_line_for 2>/dev/null}
+CFLAGS		= -Wall -Werror -Wextra -I./readlinemaster/include  -fsanitize=address -g
+RD 			= ${shell find ${HOME} -name readlinemaster 2>/dev/null}
 RM			= rm -f
 
 .c.o :
