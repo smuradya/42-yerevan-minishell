@@ -6,7 +6,7 @@
 /*   By: anhakob2 <anhakob2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 17:54:10 by anhakob2          #+#    #+#             */
-/*   Updated: 2023/02/13 18:01:27 by anhakob2         ###   ########.fr       */
+/*   Updated: 2023/03/10 15:18:11 by anhakob2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 
 t_cmd	*lst_last_data(t_cmd *cmd)
 {
-	if (cmd)
+	t_cmd	*tmp;
+
+	tmp = cmd;
+	if (tmp)
 	{
-		while (cmd->next)
-			cmd = cmd->next;
-		return (cmd);
+		while (tmp->next)
+			tmp = tmp->next;
+		return (tmp);
 	}
 	return (0);
 }

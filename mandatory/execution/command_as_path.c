@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_as_path.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tumolabs <tumolabs@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anhakob2 <anhakob2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 14:14:56 by smuradya          #+#    #+#             */
-/*   Updated: 2023/03/05 15:04:50 by tumolabs         ###   ########.fr       */
+/*   Updated: 2023/03/10 15:28:09 by anhakob2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,9 @@ int	run_with_execve(t_command *command, t_data *data)
 
 int	exec_run(t_command *command, t_data *data)
 {
-	if (is_builtin(command->arg[0]))
+	if (!command->arg || !command->arg[0])
+		return (-1);
+	if (is_builtin(command->arg[0]))		
 		return (commands_runner(command, data));
 	else
 		return (run_with_execve(command, data));

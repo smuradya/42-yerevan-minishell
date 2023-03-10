@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tumolabs <tumolabs@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anhakob2 <anhakob2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 14:43:42 by tumolabs          #+#    #+#             */
-/*   Updated: 2023/03/05 15:32:43 by tumolabs         ###   ########.fr       */
+/*   Updated: 2023/03/10 15:18:47 by anhakob2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 void	start_signals(void);
 
 //builtins
-
+void print_tokens(t_cmd **cmd);
 int		pwd(void);
 int		is_alpha(int ch);
 int		is_numeric(int ch);

@@ -27,6 +27,7 @@
 		"limits": "c",
 		"ratio": "c",
 		"vector": "c",
-		"ostream": "c"
+		"ostream": "c",
+		"history.h": "c"
 	}
 }

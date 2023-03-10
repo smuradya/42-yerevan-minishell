@@ -1,0 +1,12 @@
+if (count > 0)
+	{
+		data_array(line, metachars, cmd);
+		if (operators(*cmd) == -1)
+		{
+			write(1, "in if\n", 6);
+			lst_clear_data(cmd, &free);
+			return (-1);
+		}
+		if (data_to_struct(cmd, &command, data) == 0)
+			data->exit_status = exec_run(command, data);
+	}

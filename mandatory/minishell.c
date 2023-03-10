@@ -40,7 +40,7 @@ int	main(int argc, char **argv, char **envp)
 	data = malloc(sizeof(t_data));
 	if (start(argc, argv, envp, data) == 1)
 		return (0);
-	cmd = malloc(sizeof(t_cmd));
+	// cmd = malloc(sizeof(t_cmd));
 	rl_catch_signals = 0;
 	rl_event_hook = ft_signals;
 	signal(SIGINT, &handler);
@@ -56,7 +56,8 @@ int	main(int argc, char **argv, char **envp)
 		add_history(line);
 		if (!line[0])
 			continue ;
-		parsing_line(line, &cmd, data);
+		if (parsing_line(line, &cmd, data) == -1)
+			continue;
 		//printf("\n %d\n", data->exit_status);
 		free (line);
 	}
