@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tumolabs <tumolabs@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smuradya <smuradya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:04:38 by smuradya          #+#    #+#             */
-/*   Updated: 2023/03/05 14:50:29 by tumolabs         ###   ########.fr       */
+/*   Updated: 2023/03/10 17:21:41 by smuradya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ int	ft_echo(char **arg)
 {
 	int		i;
 	int		flag;
+	int		j;
 
 	i = 0;
+	j = 1;
 	flag = 0;
 	while (arg[++i])
 	{
@@ -25,7 +27,6 @@ int	ft_echo(char **arg)
 			flag = 1;
 		else if (arg[1][0] == '-' && arg[1][1] == 'n')
 		{
-			int j = 1;
 			while (arg[1][++j] == 'n')
 				;
 			if (arg[1][j] >= 33 && arg[1][j] <= 126)

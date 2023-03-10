@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_line.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smuradya <smuradya@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/10 19:54:57 by smuradya          #+#    #+#             */
+/*   Updated: 2023/03/10 19:54:57 by smuradya         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"  
 
@@ -13,7 +24,6 @@ int	parsing_line(char *line, t_cmd **cmd, t_data *data)
 	// if (!check_quote_syntax(line))
 	// 	return (-1);
 	count = data_count(line, metachars);
-	
 	if (count > 0)
 	{
 		data_array(line, metachars, cmd);

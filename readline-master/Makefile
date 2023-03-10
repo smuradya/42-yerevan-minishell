@@ -31,7 +31,7 @@ PACKAGE_TARNAME = readline
 srcdir = .
 
 top_srcdir = .
-BUILD_DIR = /Users/anhakob2/Desktop/minishell/readline-master
+BUILD_DIR = /Users/smuradya/Desktop/42-yerevan-minishell/readline-master
 
 INSTALL = /usr/bin/install -c
 INSTALL_PROGRAM = ${INSTALL}
@@ -48,7 +48,7 @@ MV = mv
 
 SHELL = /bin/sh
 
-prefix = /Users/anhakob2/Desktop/minishell/readlinemaster
+prefix = /Users/smuradya/Desktop/42-yerevan-minishell/readlinemaster
 exec_prefix = ${prefix}
 
 datarootdir = ${prefix}/share

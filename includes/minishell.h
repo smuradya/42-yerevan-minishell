@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anhakob2 <anhakob2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smuradya <smuradya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 14:43:42 by tumolabs          #+#    #+#             */
-/*   Updated: 2023/03/10 15:18:47 by anhakob2         ###   ########.fr       */
+/*   Updated: 2023/03/10 17:51:31 by smuradya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@
 
 //signals
 
-void	start_signals(void);
+void	start_signals(int g_exit_status);
 
 //builtins
-void print_tokens(t_cmd **cmd);
+void	print_tokens(t_cmd **cmd);
 int		pwd(void);
 int		is_alpha(int ch);
 int		is_numeric(int ch);
@@ -51,7 +51,7 @@ int		ft_export(char **argument, t_data *data);
 
 // utils
 int		ft_strcmp(char *s1, char *s2);
-int	env_add(char *new_var, t_data *data);
+int		env_add(char *new_var, t_data *data);
 void	fill_env(t_data *data, char **arg);
 void	update_oldpwd(t_data *data);
 // execution

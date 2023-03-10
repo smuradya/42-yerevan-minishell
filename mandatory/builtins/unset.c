@@ -6,7 +6,7 @@
 /*   By: smuradya <smuradya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:15:46 by smuradya          #+#    #+#             */
-/*   Updated: 2023/03/02 14:13:16 by smuradya         ###   ########.fr       */
+/*   Updated: 2023/03/10 17:05:02 by smuradya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,9 @@ int	ft_unset(char **cmd, t_data *data)
 			remove_with_key(data->env, cmd[i]);
 		else
 		{
-			printf("Minishell: unset: `%s': not a valid identifier\n", cmd[1]);
+			ft_putstr_fd("Minishell: unset: ", 2);
+			ft_putstr_fd(cmd[1], 2);
+			ft_putstr_fd(" :not a valid identifier\n", 2);
 			return (1);
 		}
 	}

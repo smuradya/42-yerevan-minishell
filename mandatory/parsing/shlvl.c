@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   shlvl.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smuradya <smuradya@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/10 19:55:23 by smuradya          #+#    #+#             */
+/*   Updated: 2023/03/10 19:55:28 by smuradya         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 void	change_shlvl(t_data *data)
@@ -7,7 +19,6 @@ void	change_shlvl(t_data *data)
 
 	tmp = data->env->head;
 	val = NULL;
-
 	while (tmp->next)
 	{
 		if (ft_strcmp(tmp->key, "SHLVL") == 0)

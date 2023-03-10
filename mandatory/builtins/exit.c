@@ -6,7 +6,7 @@
 /*   By: smuradya <smuradya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 18:46:43 by smuradya          #+#    #+#             */
-/*   Updated: 2023/03/02 17:11:27 by smuradya         ###   ########.fr       */
+/*   Updated: 2023/03/10 16:59:14 by smuradya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 static int	out_of_range(t_data *data, char **line)
 {
 	printf ("%s", "exit");
-	printf ("Minishell: exit: %s: numeric argument required\n", line[1]);
+	ft_putstr_fd ("Minishell: exit: ", 2 );
+	ft_putstr_fd (line[1], 2);
+	ft_putstr_fd (" numeric argument required\n", 2);
 	data->exit_status = 255;
 	exit(data->exit_status);
 }
@@ -69,7 +71,7 @@ int	ft_exit(char **line, t_data *data)
 	else if (line[2])
 	{
 		printf ("exit");
-		printf ("Minishell: exit: too many arguments\n");
+		ft_putstr_fd ("Minishell: exit: too many arguments\n" , 2);
 		return (1);
 	}
 	else

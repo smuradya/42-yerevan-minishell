@@ -21,7 +21,7 @@ RL_LIBRARY_VERSION = 8.2
 SHELL = /bin/sh
 RM = rm -f
 
-prefix = /Users/anhakob2/Desktop/minishell/readlinemaster
+prefix = /Users/smuradya/Desktop/42-yerevan-minishell/readlinemaster
 exec_prefix = ${prefix}
 
 datarootdir = ${prefix}/share
@@ -32,7 +32,7 @@ datadir = ${datarootdir}
 
 top_srcdir = ..
 #BUILD_DIR = .
-BUILD_DIR = /Users/anhakob2/Desktop/minishell/readline-master
+BUILD_DIR = /Users/smuradya/Desktop/42-yerevan-minishell/readline-master
 installdir = $(datadir)/readline
 
 INSTALL = /usr/bin/install -c

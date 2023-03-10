@@ -6,7 +6,7 @@
 /*   By: smuradya <smuradya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 17:00:54 by smuradya          #+#    #+#             */
-/*   Updated: 2023/02/01 20:03:30 by smuradya         ###   ########.fr       */
+/*   Updated: 2023/03/10 19:35:39 by smuradya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	ft_env(t_data *data)
 	print_list(data->env);
 	return (0);
 }
-
 
 void	fill_env(t_data *data, char **arg)
 {
