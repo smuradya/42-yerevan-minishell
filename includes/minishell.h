@@ -33,6 +33,8 @@
 //signals
 
 void	start_signals(int g_exit_status);
+void	start_child_signals(int g_exit_status);
+
 
 //builtins
 void	print_tokens(t_cmd **cmd);

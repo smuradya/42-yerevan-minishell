@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "minishell.h"
 
 int	g_exit_status = 0;
@@ -37,16 +38,47 @@ void	handler(int sig)
 {
 	(void)sig;
 	rl_replace_line("", 0);
+	// write(1, "\n", 1);
 	rl_done = 1;
 	g_exit_status = 26354;
+}
+
+void	child_handler(int sig)
+{
+	(void)sig;
+	write(1, "\n", 1);
+	rl_replace_line("\n", 0);
+	rl_done = 1;
+	g_exit_status = 26354;
+}
+
+static void	handle_sigquit(int sig)
+{
+	(void)sig;
+	rl_redisplay();
+}
+
+static void	handle_child_sigquit(int sig)
+{
+	(void)sig;
+	write(1, "\n", 1);
+	rl_redisplay();
+}
+
+void	start_child_signals(int g_exit_status)
+{
+	rl_catch_signals = 0;
+	rl_event_hook = ft_signals;
+	signal(SIGINT, child_handler);
+	signal(SIGQUIT, handle_child_sigquit);
 }
 
 void	start_signals(int g_exit_status)
 {
 	rl_catch_signals = 0;
 	rl_event_hook = ft_signals;
-	signal(SIGINT, &handler);
-	signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, handler);
+	signal(SIGQUIT, handle_sigquit);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -58,11 +90,6 @@ int	main(int argc, char **argv, char **envp)
 	data = malloc(sizeof(t_data));
 	if (start(argc, argv, envp, data) == 1)
 		return (0);
-		//cmd = malloc(sizeof(t_cmd));
-	rl_catch_signals = 0;
-	rl_event_hook = ft_signals;
-	signal(SIGINT, &handler);
-	signal(SIGQUIT, SIG_IGN);
 	while (1)
 	{
 		line = readline("Minishell% ");
@@ -76,7 +103,7 @@ int	main(int argc, char **argv, char **envp)
 			continue ;
 		if (parsing_line(line, &cmd, data) == -1)
 			continue ;
-		printf("\n %d\n", data->exit_status);
+		//printf("\n %d\n", data->exit_status);
 		free (line);
 	}
 }

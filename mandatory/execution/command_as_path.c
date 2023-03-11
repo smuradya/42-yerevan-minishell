@@ -67,7 +67,10 @@ int	run_with_execve(t_command *command, t_data *data)
 			execve (path_to_command, command->arg, new_envp);
 		}
 		else
+		{
+			start_child_signals(0);
 			wait(NULL);
+		}
 	}
 	else
 	{
@@ -76,6 +79,7 @@ int	run_with_execve(t_command *command, t_data *data)
 		ft_putstr_fd(": command not found\n", 2);
 		return (127);
 	}
+	start_signals(0);
 	return (0);
 }
 

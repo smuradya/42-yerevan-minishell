@@ -28,6 +28,10 @@
 		"ratio": "c",
 		"vector": "c",
 		"ostream": "c",
-		"history.h": "c"
+		"history.h": "c",
+		"__debug": "c",
+		"wait.h": "c",
+		"array": "c",
+		"string": "c"
 	}
 }
