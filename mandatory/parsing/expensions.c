@@ -64,12 +64,10 @@ static int	not_found_2(t_cmd *cmd, int *i, int j, t_node *tmp)
 
 static int	not_found(t_cmd *cmd, int *i, int j, int quote)
 {
-	t_list	*tmp1;
 	t_node	*tmp;
 	int		res;
 
-	tmp1 = malloc(sizeof(t_list *) * 1);
-	tmp = tmp1->head;
+	tmp =  malloc(sizeof(t_node));;
 	if (tmp == 0)
 		return (-1);
 	tmp->key = (char *)malloc(sizeof(char) * 2);

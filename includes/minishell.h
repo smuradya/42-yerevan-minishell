@@ -54,7 +54,7 @@ int		ft_export(char **argument, t_data *data);
 // utils
 int		ft_strcmp(char *s1, char *s2);
 int		env_add(char *new_var, t_data *data);
-void	fill_env(t_data *data, char **arg);
+int 	fill_env(t_data **data, char **arg);
 void	update_oldpwd(t_data *data);
 // execution
 

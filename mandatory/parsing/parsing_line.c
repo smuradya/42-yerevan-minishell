@@ -34,7 +34,8 @@ int	parsing_line(char *line, t_cmd **cmd, t_data *data)
 			return (-1);
 		}
 		if (data_to_struct(cmd, &command, data) == 0)
-			data->exit_status = exec_run(command, data);		
+			data->exit_status = exec_run(command, data);
+		// printf("\n %d\n", data->exit_status);	
 	}
 	return (1);
 }

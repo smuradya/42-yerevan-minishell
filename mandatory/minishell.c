@@ -24,7 +24,7 @@ static int	start(int argc, char **argv, char **envp, t_data *data)
 		return (1);
 	}
 	start_signals(g_exit_status);
-	fill_env(data, envp);
+	fill_env(&data, envp);
 	change_shlvl(data);
 	return (0);
 }
@@ -103,7 +103,6 @@ int	main(int argc, char **argv, char **envp)
 			continue ;
 		if (parsing_line(line, &cmd, data) == -1)
 			continue ;
-		//printf("\n %d\n", data->exit_status);
 		free (line);
 	}
 }
