@@ -17,6 +17,7 @@ int	ft_env(t_data *data)
 	print_list(data->env);
 	return (0);
 }
+
 t_node	*lst_new_elem(char *name, char *value)
 {
 	t_node	*new_elem;

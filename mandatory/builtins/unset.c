@@ -34,8 +34,10 @@ int	unset_errors(char *arg)
 int	ft_unset(char **cmd, t_data *data)
 {
 	int	i;
+	int	has_error;
 
 	i = 0;
+	has_error = 0;
 	while (cmd[++i])
 	{
 		if (!unset_errors(cmd[i]))
@@ -45,8 +47,8 @@ int	ft_unset(char **cmd, t_data *data)
 			ft_putstr_fd("Minishell: unset: ", 2);
 			ft_putstr_fd(cmd[1], 2);
 			ft_putstr_fd(" :not a valid identifier\n", 2);
-			return (1);
+			has_error = 1;
 		}
 	}
-	return (0);
+	return (has_error);
 }
