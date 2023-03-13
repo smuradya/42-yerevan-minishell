@@ -34,9 +34,12 @@
 
 void	start_signals(int g_exit_status);
 void	start_child_signals(int g_exit_status);
+void	signals_init(void);
+void	handle_sigint_heredoc(int sig);
 
 
 //builtins
+
 void	print_tokens(t_cmd **cmd);
 int		pwd(void);
 int		is_alpha(int ch);
@@ -52,10 +55,12 @@ int		check_for_first_character(char first);
 int		ft_export(char **argument, t_data *data);
 
 // utils
+
 int		ft_strcmp(char *s1, char *s2);
 int		env_add(char *new_var, t_data *data);
-int 	fill_env(t_data **data, char **arg);
+int 	fill_env(t_data *data, char **arg);
 void	update_oldpwd(t_data *data);
+
 // execution
 
 void	change_shlvl(t_data *data);
@@ -72,6 +77,8 @@ int		is_path_to_command(t_string command);
 int		execute_with_execve(t_data *data, t_string *command);
 int		execute_path_as_command(t_data *data, t_string *command);
 
+int		heredoc(t_command *command, t_list **env);
+
 //parsing
 
 int		lst_size_data(t_cmd *lst);
@@ -82,11 +89,6 @@ void	lst_delone(t_node *tmp, void (*del)(void *));
 void	lst_add_back_data(t_cmd **lst, t_cmd *new_node);
 void	lst_delone_data(t_cmd *lst, void (*del)(void *));
 void	lst_clear_data(t_cmd **lst, void (*del)(void *));
-
-void	signals_init(void);
-void	handle_sigint_heredoc(int sig);
-int		heredoc(t_command *command, t_list **env);
-
 int		operators(t_cmd *cmd);
 void	data_trim(t_cmd **cmd);
 void	quote_removal(t_cmd *cmd);

@@ -24,7 +24,7 @@ static int	start(int argc, char **argv, char **envp, t_data *data)
 		return (1);
 	}
 	start_signals(g_exit_status);
-	fill_env(&data, envp);
+	fill_env(data, envp);
 	change_shlvl(data);
 	return (0);
 }

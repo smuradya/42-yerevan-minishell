@@ -31,7 +31,7 @@ t_node	*lst_new_elem(char *name, char *value)
 	return (new_elem);
 }
 
-static int	for_exit_status(t_node *node, t_data **data)
+static int	for_exit_status(t_node *node, t_data *data)
 {
 	char	*blank;
 
@@ -41,23 +41,23 @@ static int	for_exit_status(t_node *node, t_data **data)
 	blank[0] = '0';
 	blank[1] = '\0';
 	node = lst_new_elem(ft_strdup("?"), blank);
-	add((*data)->env, node);
+	add(data->env, node);
 	return (1);
 }
 
-int	fill_env(t_data **data, char **arg)
+int	fill_env(t_data *data, char **arg)
 {
 	int		i;
 	char	**tmp;
 	t_node	*node;
 
 	i = -1;
-	(*data)->env = new_list();
+	data->env = new_list();
 	while (arg[++i])
 	{
 		tmp = ft_split(arg[i], '=');
 		node = new_node(tmp[0], tmp[1]);
-		add((*data)->env, node);
+		add(data->env, node);
 		free_array(tmp);
 		tmp = NULL;
 	}

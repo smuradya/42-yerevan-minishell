@@ -15,8 +15,8 @@
 int	commands_runner(t_command *command, t_data *data)
 {	
 	int	exit_status;
-
-	exit_status = 0;
+	
+	exit_status = data->exit_status;
 	if (ft_strcmp(command->arg[0], "env") == 0)
 		exit_status = ft_env(data);
 	else if (ft_strcmp(command->arg[0], "export") == 0)
