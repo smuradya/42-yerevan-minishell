@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anhakob2 <anhakob2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syeghiaz <syeghiaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:21:40 by anhakob2          #+#    #+#             */
-/*   Updated: 2023/03/02 20:40:49 by anhakob2         ###   ########.fr       */
+/*   Updated: 2023/03/15 22:29:19 by syeghiaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	check_status(char *key, char *value, t_data *data)
+int	check_status(char *key, char *value)
 {
 	t_node	*tmp;
 
-	tmp = data->env->head;
+	tmp = g_data->env->head;
 	if (!key)
 		return (0);
 	while (tmp)

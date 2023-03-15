@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smuradya <smuradya@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syeghiaz <syeghiaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 19:32:01 by smuradya          #+#    #+#             */
-/*   Updated: 2023/03/10 18:22:21 by smuradya         ###   ########.fr       */
+/*   Updated: 2023/03/15 22:26:11 by syeghiaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-char	*check_value(char *key, t_data *data)
+char	*check_value(char *key)
 {
 	t_node	*tmp;
 
-	tmp = data->env->head;
+	tmp = g_data->env->head;
 	while (tmp)
 	{
 		if (ft_strcmp(key, tmp->key) == 0)
@@ -26,26 +26,26 @@ char	*check_value(char *key, t_data *data)
 	return (0);
 }
 
-void	update_oldpwd(t_data *data)
+void	update_oldpwd()
 {
 	char	cwd[1024];
 	char	*old_pwd;
 
 	getcwd(cwd, 1024);
 	old_pwd = ft_strjoin("OLDPWD=", cwd);
-	if (check_value(old_pwd, data) == 0)
-		env_add(old_pwd, data);
+	if (check_value(old_pwd) == 0)
+		env_add(old_pwd);
 	free(old_pwd);
 }
 
-int	ft_cd(char **args, t_data *data)
+int	ft_cd(char **args)
 {
-	update_oldpwd(data);
+	update_oldpwd();
 	t_node	*home_node;
 	int		has_error;
 
 	has_error = 0;
-	home_node = find_node_with_key(data->env, "HOME");
+	home_node = find_node_with_key(g_data->env, "HOME");
 	if (!home_node)
 	{
 		ft_putstr_fd("Minishell: cd: HOME not set\n", 2);

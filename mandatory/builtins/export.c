@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tumolabs <tumolabs@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syeghiaz <syeghiaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 14:49:22 by smuradya          #+#    #+#             */
-/*   Updated: 2023/03/05 15:25:00 by tumolabs         ###   ########.fr       */
+/*   Updated: 2023/03/15 22:28:46 by syeghiaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	export_with_no_args(t_list *list)
 	return (0);
 }
 
-int	ft_export(char **argument, t_data *data)
+int	ft_export(char **argument)
 {
 	int		i;
 	t_node	*node;
@@ -55,21 +55,21 @@ int	ft_export(char **argument, t_data *data)
 	has_error = 0;
 	i = 0;
 	if (!argument[1])
-		return (export_with_no_args(data->env));
+		return (export_with_no_args(g_data->env));
 	while (argument[++i])
 	{
 		if (!export_errors(argument[i]))
 		{
 			splitted = ft_split(argument[i], '=');
-			node = find_node_with_key(data->env, splitted[0]);
+			node = find_node_with_key(g_data->env, splitted[0]);
 			if (node)
-				update_with_key(data->env, splitted[0], splitted[1]);
+				update_with_key(g_data->env, splitted[0], splitted[1]);
 			else
 			{
 				if (splitted[0])
 				{
 					node = new_node(splitted[0], splitted[1]);
-					add(data->env, node);
+					add(g_data->env, node);
 				}
 			}
 		}

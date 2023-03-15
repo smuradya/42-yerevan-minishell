@@ -19,13 +19,9 @@ static void	command_init(t_command **command)
 	(*command)->arg = 0;
 	(*command)->oper = 0;
 	(*command)->oper_value = 0;
-	(*command)->builtin = 0;
-	(*command)->path = 0;
-	(*command)->std_in = 0;
-	(*command)->std_out = 1;
+	(*command)->in = 0;
+	(*command)->out = 1;
 	(*command)->pipe = 0;
-	(*command)->pipe_out = 0;
-	(*command)->pipe_in = 0;
 	(*command)->next = 0;
 }
 
@@ -43,19 +39,17 @@ static int	parsing_pipe(t_cmd **cmd, t_command *last)
 		return (-1);
 	command_init(&new_command);
 	last->next = new_command;
-	last->pipe_out = fd[1];
-	last->next->pipe_in = fd[0];
 	return (0);
 }
 
-int	data_to_struct(t_cmd **cmd, t_command **command, t_data *data)
+int	data_to_struct(t_cmd **cmd, t_command **command)
 {
 	t_command	*last;
 	int			id;
 
 	id = 0;
 	command_init(command);
-	if (parsing_command(cmd, *command, data) == -1)
+	if (parsing_command(cmd, *command) == -1)
 		return (-1);
 	(*command)->id = id;
 	while ((*cmd) != 0 && ft_strcmp((*cmd)->value, "|") == 0)
@@ -67,7 +61,7 @@ int	data_to_struct(t_cmd **cmd, t_command **command, t_data *data)
 		last = *command;
 		while (last->next != 0)
 			last = last->next;
-		if (parsing_command(cmd, last, data) == -1)
+		if (parsing_command(cmd, last) == -1)
 			return (-1);
 		last->id = ++id;
 	}

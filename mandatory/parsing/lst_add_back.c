@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_add_back.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tumolabs <tumolabs@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syeghiaz <syeghiaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 17:40:15 by anhakob2          #+#    #+#             */
-/*   Updated: 2023/02/17 20:10:20 by tumolabs         ###   ########.fr       */
+/*   Updated: 2023/03/15 22:21:59 by syeghiaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ void	ft_lstadd_back(t_node **node, t_node *new)
 }
 
 
-int	check_key(char *key, char *value, t_data *data)
+int	check_key(char *key, char *value)
 {
 	t_node	*tmp;
 
-	tmp = data->env->head;
+	tmp = g_data->env->head;
 	if (!key)
 		return (0);
 	while (tmp)
@@ -61,16 +61,16 @@ int	check_key(char *key, char *value, t_data *data)
 	return (0);
 }
 
-int	env_add(char *new_var, t_data *data)
+int	env_add(char *new_var)
 {
 	t_node	*new_node;
 	char	**tmp;
 
-	new_node = data->env->head;
+	new_node = g_data->env->head;
 	tmp = ft_split(new_var, '=');
-	if (check_key(tmp[0], tmp[1], data) == 0)
+	if (check_key(tmp[0], tmp[1]) == 0)
 	{
-		new_node = malloc(sizeof(t_data));
+		new_node = malloc(sizeof(t_node));
 		if (!(new_node))
 			return (1);
 		new_node->key = ft_strdup(tmp[0]);
@@ -79,7 +79,7 @@ int	env_add(char *new_var, t_data *data)
 		else
 			new_node->value = NULL;
 		new_node->next = NULL;
-		ft_lstadd_back(&data->env->head, new_node);
+		add(g_data->env, new_node);
 	}
 	free_array(tmp);
 	return (0);

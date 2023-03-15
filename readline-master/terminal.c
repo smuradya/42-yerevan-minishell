@@ -236,7 +236,7 @@ _win_get_screensize (int *swp, int *shp)
   HANDLE hConOut;
   CONSOLE_SCREEN_BUFFER_INFO scr;
 
-  hConOut = GetStdHandle (STD_OUTPUT_HANDLE);
+  hConOut = GetStdHandle (outPUT_HANDLE);
   if (hConOut != INVALID_HANDLE_VALUE)
     {
       if (GetConsoleScreenBufferInfo (hConOut, &scr))

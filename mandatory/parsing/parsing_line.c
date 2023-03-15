@@ -12,7 +12,7 @@
 
 #include "minishell.h"  
 
-int	parsing_line(char *line, t_cmd **cmd, t_data *data)
+int	parsing_line(char *line, t_cmd **cmd)
 {
 	int			count;
 	char		metachars[11];
@@ -30,8 +30,8 @@ int	parsing_line(char *line, t_cmd **cmd, t_data *data)
 			lst_clear_data(cmd, &free);
 			return (-1);
 		}
-		if (data_to_struct(cmd, &command, data) == 0)
-			data->exit_status = exec_run(command, data);
+		if (data_to_struct(cmd, &command) == 0)
+			g_data->exit_status = exec_run(command);
 	}
 	return (1);
 }

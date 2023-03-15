@@ -1,18 +1,8 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: smuradya <smuradya@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/10 17:59:00 by smuradya          #+#    #+#             */
-/*   Updated: 2023/03/10 19:57:00 by smuradya         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "minishell.h"
 
-static int	start(int argc, char **argv, char **envp, t_data *data)
+t_data	*g_data;
+
+static int	start(int argc, char **argv, char **envp)
 {
 	int	g_exit_status;
 
@@ -24,8 +14,8 @@ static int	start(int argc, char **argv, char **envp, t_data *data)
 		return (1);
 	}
 	start_signals(g_exit_status);
-	fill_env(data, envp);
-	change_shlvl(data);
+	fill_environmental(envp);
+	change_shlvl();
 	return (0);
 }
 
@@ -33,10 +23,9 @@ int	main(int argc, char **argv, char **envp)
 {
 	char	*line;
 	t_cmd	*cmd;
-	t_data	*data;
 
-	data = malloc(sizeof(t_data));
-	if (start(argc, argv, envp, data) == 1)
+	g_data = malloc(sizeof(t_data));
+	if (start(argc, argv, envp) == 1)
 		return (0);
 	while (1)
 	{
@@ -49,7 +38,7 @@ int	main(int argc, char **argv, char **envp)
 		add_history(line);
 		if (!line[0])
 			continue ;
-		if (parsing_line(line, &cmd, data) == -1)
+		if (parsing_line(fill_env_parsing(line), &cmd) == -1)
 			continue ;
 		free (line);
 	}

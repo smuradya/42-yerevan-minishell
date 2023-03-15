@@ -67,7 +67,7 @@ static int	not_found(t_cmd *cmd, int *i, int j, int quote)
 	t_node	*tmp;
 	int		res;
 
-	tmp =  malloc(sizeof(t_node));;
+	tmp =  malloc(sizeof(t_node));
 	if (tmp == 0)
 		return (-1);
 	tmp->key = (char *)malloc(sizeof(char) * 2);
@@ -87,14 +87,14 @@ static int	not_found(t_cmd *cmd, int *i, int j, int quote)
 	return (res);
 }
 
-static int	search_and_replace(t_cmd *c, int *i, t_list *env, int q)
+static int	search_and_replace(t_cmd *c, int *i, int q)
 {
 	char	*new_str;
 	int		j;
 	t_node	*tmp;
 
 	j = *i + 1;
-	tmp = env->head; 
+	tmp = g_data->env->head;
 	while (c->value[j] != ' ' && c->value[j] != '\0' && c->value[j] != '\t'
 		&& c->value[j] != '\"' && c->value[j] != '\'' && c->value[j] != '/'
 		&& c->value[j] != '$' && c->value[j] != '=')
@@ -118,7 +118,7 @@ static int	search_and_replace(t_cmd *c, int *i, t_list *env, int q)
 		return (not_found(c, i, j, q));
 }
 
-void	p_expansion(t_cmd *cmd, t_list *env)
+void	p_expansion(t_cmd *cmd)
 {
 	int		i;
 
@@ -135,9 +135,9 @@ void	p_expansion(t_cmd *cmd, t_list *env)
 		{
 			while (cmd->value[++i] != '\"')
 				if (cmd->value[i] == '$')
-					search_and_replace(cmd, &i, env, 1);
+					search_and_replace(cmd, &i, 1);
 		}
 		else if (cmd->value[i] == '$')
-			search_and_replace(cmd, &i, env, 0);
+			search_and_replace(cmd, &i, 0);
 	}
 }

@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-static void	parsing_final(t_cmd **cmd, t_list *env)
+static void	parsing_final(t_cmd **cmd)
 {
 	t_cmd	*tmp;
 	t_cmd	*tmp2;
@@ -26,11 +26,11 @@ static void	parsing_final(t_cmd **cmd, t_list *env)
 			tmp->type = 'h';
 		quote_counting(tmp);
 		if (tmp->type != 'h')
-			p_expansion(tmp, env);
+			p_expansion(tmp);
 		tmp2 = tmp;
 		tmp = tmp->next;
 	}
-	word_splitting(cmd, env);
+	word_splitting(cmd);
 	tmp = *cmd;
 	while (tmp != 0 && tmp->type != 'c')
 	{
@@ -40,27 +40,27 @@ static void	parsing_final(t_cmd **cmd, t_list *env)
 	}
 }
 
-int	parsing_command(t_cmd **cmd, t_command *command, t_data *data)
+int	parsing_command(t_cmd **cmd, t_command *command)
 {
 	int	i;
 
-	parsing_final(cmd, data->env);
+	parsing_final(cmd);
 	arg_count(cmd, command);
-	i = parsing_opers(cmd, command, &data->env);
+	i = parsing_opers(cmd, command);
 	if (i == -1)
 	{
 		ft_putstr_fd("Minishell: ", 2);
 		ft_putstr_fd(command->oper_value, 2);
 		ft_putstr_fd(": No such file or directory\n", 2);
-		check_status("?", "1", data);
+		check_status("?", "1");
 	}
 	if (i == -2)
 	{
-		check_status("?", "258", data);
+		check_status("?", "258");
 		return (-1);
 	}
 	if (i == -3)
-		check_status("?", "1", data);
+		check_status("?", "1");
 	if (i < 0)
 		return (-1);
 	return (0);

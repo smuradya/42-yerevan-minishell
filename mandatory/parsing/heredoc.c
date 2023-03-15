@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anhakob2 <anhakob2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syeghiaz <syeghiaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 20:27:53 by anhakob2          #+#    #+#             */
-/*   Updated: 2023/03/02 20:28:23 by anhakob2         ###   ########.fr       */
+/*   Updated: 2023/03/15 22:23:11 by syeghiaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char	*line_expansion(char *line, t_list *env)
+static char	*line_expansion(char *line)
 {
 	t_cmd	*tmp;
 	char	*str;
@@ -28,14 +28,14 @@ static char	*line_expansion(char *line, t_list *env)
 	tmp->quote[ft_strlen(line)] = '\0';
 	tmp->quote = (char *)ft_memset(tmp->quote, '0', ft_strlen(line));
 	tmp->next = 0;
-	p_expansion(tmp, env);
+	p_expansion(tmp);
 	free(tmp->quote);
 	str = tmp->value;
 	free(tmp);
 	return (str);
 }
 
-static void	go_heredoc(t_command *command, t_list *env, int fd_doc)
+static void	go_heredoc(t_command *command, int fd_doc)
 {
 	char	*line;
 
@@ -48,7 +48,7 @@ static void	go_heredoc(t_command *command, t_list *env, int fd_doc)
 				ft_strlen(command->oper_value) + 1) == 0)
 			break ;
 		if (command->delimitor == 'h')
-			line = line_expansion(line, env);
+			line = line_expansion(line);
 		ft_putstr_fd(line, fd_doc);
 		ft_putstr_fd("\n", fd_doc);
 		free(line);
@@ -57,11 +57,11 @@ static void	go_heredoc(t_command *command, t_list *env, int fd_doc)
 		free(line);
 }
 
-static void	heredoc_one(t_command *command, t_list **env, int *heredoc)
+static void	heredoc_one(t_command *command, int *heredoc)
 {
 	signal(SIGINT, handle_sigint_heredoc);
 	close(heredoc[0]);
-	go_heredoc(command, *env, heredoc[1]);
+	go_heredoc(command, heredoc[1]);
 	close(heredoc[1]);
 	exit(0);
 }
@@ -79,14 +79,14 @@ static int	heredoc_two(t_command *command, int *heredoc)
 		if (exit_status == 1)
 			return (-3);
 		else
-			command->std_in = dup(heredoc[0]);
+			command->in = dup(heredoc[0]);
 		close(heredoc[0]);
 	}
 	signals_init();
 	return (0);
 }
 
-int	heredoc(t_command *command, t_list **env)
+int	heredoc(t_command *command)
 {
 	int	i;
 	int	pid;
@@ -98,7 +98,7 @@ int	heredoc(t_command *command, t_list **env)
 		exit(1);
 	pid = fork();
 	if (pid == 0)
-		heredoc_one(command, env, her);
+		heredoc_one(command, her);
 	else
 	{
 		result = heredoc_two(command, her);

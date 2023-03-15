@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smuradya <smuradya@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syeghiaz <syeghiaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 18:46:43 by smuradya          #+#    #+#             */
-/*   Updated: 2023/03/10 16:59:14 by smuradya         ###   ########.fr       */
+/*   Updated: 2023/03/15 22:09:40 by syeghiaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	out_of_range(t_data *data, char **line)
+static int	out_of_range(char **line)
 {
 	printf ("%s", "exit");
 	ft_putstr_fd ("Minishell: exit: ", 2 );
 	ft_putstr_fd (line[1], 2);
 	ft_putstr_fd (" numeric argument required\n", 2);
-	data->exit_status = 255;
-	exit(data->exit_status);
+	g_data->exit_status = 255;
+	exit(g_data->exit_status);
 }
 
 int	is_numeric_char(char ch)
@@ -55,7 +55,7 @@ int	is_numeric_argument(char *argument)
 	return (1);
 }
 
-int	ft_exit(char **line, t_data *data)
+int	ft_exit(char **line)
 {
 	long long	exit_status;
 
@@ -66,7 +66,7 @@ int	ft_exit(char **line, t_data *data)
 	}
 	else if (!is_numeric_argument(line[1]))
 	{
-		return (out_of_range(data, line));
+		return (out_of_range(line));
 	}
 	else if (line[2])
 	{

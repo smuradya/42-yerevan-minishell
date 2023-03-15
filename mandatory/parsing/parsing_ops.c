@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-static int	parsing_ins(t_command *command, t_list **env)
+static int	parsing_ins(t_command *command)
 {
 	int	fd;
 
@@ -20,13 +20,16 @@ static int	parsing_ins(t_command *command, t_list **env)
 	{
 		fd = open(command->oper_value, O_RDONLY);
 		if (fd < 0)
+		{
+			command->in = -1;
 			return (-1);
-		if (command->std_in != 0)
-			close(command->std_in);
-		command->std_in = fd;
+		}
+		if (command->in != 0)
+			close(command->in);
+		command->in = fd;
 	}
 	else if (ft_strncmp(command->oper, "<<", 3) == 0)
-		return (heredoc(command, env));
+		return (heredoc(command));
 	return (0);
 }
 
@@ -35,13 +38,12 @@ static void	parsing_out(t_command *command)
 	int	fd;
 
 	fd = open(command->oper_value, O_CREAT | O_WRONLY | O_APPEND, 0644);
-	if (command->std_out != 1)
-		close(command->std_out);
-	command->std_out = fd;
+	if (command->out != 1)
+		close(command->out);
+	command->out = fd;
 }
 
-static int	parsing_redirs(t_cmd **cmd, t_command *command,
-		t_cmd **tmp, t_list **env)
+static int	parsing_redirs(t_cmd **cmd, t_command *command, t_cmd **tmp)
 {
 	int	fd;
 
@@ -55,18 +57,18 @@ static int	parsing_redirs(t_cmd **cmd, t_command *command,
 	if (ft_strncmp(command->oper, ">", 2) == 0)
 	{
 		fd = open(command->oper_value, O_CREAT | O_WRONLY | O_TRUNC, 0644);
-		if (command->std_out != 1)
-			close(command->std_out);
-		command->std_out = fd;
+		if (command->out != 1)
+			close(command->out);
+		command->out = fd;
 	}
 	else if (ft_strncmp(command->oper, ">>", 3) == 0)
 		parsing_out(command);
 	else
-		return (parsing_ins(command, env));
+		return (parsing_ins(command));
 	return (0);
 }
 
-int	parsing_opers(t_cmd **cmd, t_command *command, t_list **env)
+int	parsing_opers(t_cmd **cmd, t_command *command)
 {
 	t_cmd	*tmp;
 	int		status;
@@ -82,7 +84,7 @@ int	parsing_opers(t_cmd **cmd, t_command *command, t_list **env)
 		lst_delone_data(tmp, &free);
 		if (*cmd != 0 && ((*cmd)->type == 'v'
 				|| (*cmd)->type == 'h' || (*cmd)->type == 'H'))
-			status = parsing_redirs(cmd, command, &tmp, env);
+			status = parsing_redirs(cmd, command, &tmp);
 		else
 		{
 			ft_putstr_fd("Minishell$ Syntax error: Undefined value after " \

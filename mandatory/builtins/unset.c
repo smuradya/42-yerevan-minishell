@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smuradya <smuradya@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syeghiaz <syeghiaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:15:46 by smuradya          #+#    #+#             */
-/*   Updated: 2023/03/10 17:05:02 by smuradya         ###   ########.fr       */
+/*   Updated: 2023/03/15 22:29:05 by syeghiaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	unset_errors(char *arg)
 	return (0);
 }
 
-int	ft_unset(char **cmd, t_data *data)
+int	ft_unset(char **cmd)
 {
 	int	i;
 	int	has_error;
@@ -41,7 +41,7 @@ int	ft_unset(char **cmd, t_data *data)
 	while (cmd[++i])
 	{
 		if (!unset_errors(cmd[i]))
-			remove_with_key(data->env, cmd[i]);
+			remove_with_key(g_data->env, cmd[i]);
 		else
 		{
 			ft_putstr_fd("Minishell: unset: ", 2);

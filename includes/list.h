@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tumolabs <tumolabs@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syeghiaz <syeghiaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 14:43:09 by tumolabs          #+#    #+#             */
-/*   Updated: 2023/03/05 14:43:32 by tumolabs         ###   ########.fr       */
+/*   Updated: 2023/03/15 21:35:44 by syeghiaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,9 @@ struct s_node
 {
 	char	*key;
 	char	*value;
+	int		index;
 	t_node	*next;
 	t_node	*prev;
-	int		index;
-	int		file_error;
-	int		file_status;
 };
 
 typedef struct s_list
@@ -41,6 +39,7 @@ struct s_data
 	char	*argument;
 	int		exit_status;
 	char	*command;
+	int		**fds;
 	t_list	*env;
 };
 
@@ -58,14 +57,10 @@ typedef struct s_command
 	char				**arg;
 	char				*oper;
 	char				*oper_value;
-	int					builtin;
-	int					path;
 	char				delimitor;
-	int					std_in;
-	int					std_out;
+	int					in;
+	int					out;
 	int					pipe;
-	int					pipe_out;
-	int					pipe_in;
 	struct s_command	*next;
 }						t_command;
 

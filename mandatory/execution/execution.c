@@ -3,21 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tumolabs <tumolabs@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syeghiaz <syeghiaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 14:27:04 by smuradya          #+#    #+#             */
-/*   Updated: 2023/03/05 15:06:07 by tumolabs         ###   ########.fr       */
+/*   Updated: 2023/03/15 22:16:16 by syeghiaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include  "minishell.h"
 
-static char	**split_path(t_data *data)
+static char	**split_path()
 {
 	char	*paths;
 	char	**splitted_path;
 
-	(void)data;
 	paths = getenv("PATH");
 	if (!paths)
 		return (NULL);
@@ -25,14 +24,14 @@ static char	**split_path(t_data *data)
 	return (splitted_path);
 }
 
-char	*check_commands(t_data *data, char *command)
+char	*check_commands(char *command)
 {
 	char	**path;
 	char	*value;
 	int		i;
 
 	i = -1;
-	path = split_path(data);
+	path = split_path();
 	if (!path)
 		return (command);
 	while (path[++i] != 0)
@@ -67,15 +66,14 @@ t_string	get_env_row(t_node *node)
 	return (env_row);
 }
 
-
-char	**list_to_env(t_data *data)
+char	**list_to_env()
 {
 	int		i;
 	char	**new_envp;
 	t_node	*tmp;
 
-	tmp = data->env->head;
-	new_envp = malloc(sizeof(char *) * (data->env->count + 1));
+	tmp = g_data->env->head;
+	new_envp = malloc(sizeof(char *) * (g_data->env->count + 1));
 	i = 0;
 	while (tmp)
 	{	
