@@ -38,6 +38,7 @@ static char	*line_expansion(char *line)
 static void	go_heredoc(t_command *command, int fd_doc)
 {
 	char	*line;
+	char	*temp;
 
 	while (1)
 	{
@@ -48,7 +49,11 @@ static void	go_heredoc(t_command *command, int fd_doc)
 				ft_strlen(command->oper_value) + 1) == 0)
 			break ;
 		if (command->delimitor == 'h')
-			line = line_expansion(line);
+		{
+			temp = line;
+			line = fill_env_parsing(line);
+			free(temp);
+		}
 		ft_putstr_fd(line, fd_doc);
 		ft_putstr_fd("\n", fd_doc);
 		free(line);
