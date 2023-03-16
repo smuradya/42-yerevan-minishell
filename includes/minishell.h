@@ -60,7 +60,7 @@ int			check_for_first_character(char first);
 int			ft_export(char **argument);	
 
 // utils
-	
+
 int			ft_strcmp(char *s1, char *s2);
 int			env_add(char *new_var);
 void		fill_environmental(char **arg);
@@ -105,6 +105,7 @@ void		lst_delone(t_node *tmp, void (*del)(void *));
 void		lst_add_back_data(t_cmd **lst, t_cmd *new_node);
 void		lst_delone_data(t_cmd *lst, void (*del)(void *));
 void		lst_clear_data(t_cmd **lst, void (*del)(void *));
+void		lst_clear(void);
 int			operators(t_cmd *cmd);
 void		data_trim(t_cmd **cmd);
 void		quote_removal(t_cmd *cmd);

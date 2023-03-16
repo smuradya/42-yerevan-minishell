@@ -1,3 +1,4 @@
+
 #include "minishell.h"
 
 t_data	*g_data;
@@ -22,6 +23,7 @@ static int	start(int argc, char **argv, char **envp)
 int	main(int argc, char **argv, char **envp)
 {
 	char	*line;
+	char	*fill_env;
 	t_cmd	*cmd;
 
 	g_data = malloc(sizeof(t_data));
@@ -38,8 +40,12 @@ int	main(int argc, char **argv, char **envp)
 		add_history(line);
 		if (!line[0])
 			continue ;
-		if (parsing_line(fill_env_parsing(line), &cmd) == -1)
+		fill_env = fill_env_parsing(line);
+		if (parsing_line(fill_env, &cmd) == -1)
 			continue ;
 		free (line);
+		//system("leaks minishell");
+		free (fill_env);
 	}
+	lst_clear();
 }

@@ -25,7 +25,6 @@ int	execute_single_command(t_command *command)
 	int	std_in;
 	int	status;
 
-	printf("command->in = %d, command->out = %d\n", command->in, command->out);
 	if (is_builtin(command->arg[0]))
 	{
 		std_out = dup(STDOUT_FILENO);
@@ -54,10 +53,29 @@ t_command	*get_command_with_index(t_command *first, int index)
 
 void	free_data(void)
 {
-	write(1, "FREE DATA!!!", 12);
+	t_node	*tmp;
+
+	tmp = g_data->env->head;
+	if (tmp)
+	{
+		while (tmp != 0)
+		{
+			free(tmp);
+			tmp = tmp->next;
+		}
+	}
+	free (tmp);
+	free (g_data->env);
+	if (g_data)
+	{
+		free(g_data->argument);
+		free(g_data->command);
+	}
+	free (g_data);
 }
 
 int	free_and_exit(int exit_status)
 {
+	free_data();
 	exit(exit_status);
 }

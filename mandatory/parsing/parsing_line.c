@@ -12,6 +12,16 @@
 
 #include "minishell.h"  
 
+static void	clear_all(t_command **command, t_cmd **cmd)
+{
+	lst_clear_data(cmd, &free);
+	while (*command != 0)
+	{
+		command_free(*command);
+		*command = (*command)->next;
+	}
+}
+
 int	parsing_line(char *line, t_cmd **cmd)
 {
 	int			count;
@@ -32,6 +42,7 @@ int	parsing_line(char *line, t_cmd **cmd)
 		}
 		if (data_to_struct(cmd, &command) == 0)
 			g_data->exit_status = exec_run(command);
+		clear_all(&command, cmd);
 	}
 	return (1);
 }
