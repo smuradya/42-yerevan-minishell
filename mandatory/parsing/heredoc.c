@@ -59,7 +59,7 @@ static void	go_heredoc(t_command *command, int fd_doc)
 
 static void	heredoc_one(t_command *command, int *heredoc)
 {
-	signal(SIGINT, handle_sigint_heredoc);
+	signal(SIGINT, handle_sigint_heredoc_child);
 	close(heredoc[0]);
 	go_heredoc(command, heredoc[1]);
 	close(heredoc[1]);
@@ -70,6 +70,7 @@ static int	heredoc_two(t_command *command, int *heredoc)
 {
 	int	exit_status;
 
+	g_data->fd_to_close = heredoc[0];
 	signal(SIGINT, SIG_IGN);
 	wait(&exit_status);
 	close(heredoc[1]);
@@ -77,7 +78,9 @@ static int	heredoc_two(t_command *command, int *heredoc)
 	{
 		exit_status = WEXITSTATUS(exit_status);
 		if (exit_status == 1)
+		{
 			return (-3);
+		}
 		else
 			command->in = dup(heredoc[0]);
 		close(heredoc[0]);

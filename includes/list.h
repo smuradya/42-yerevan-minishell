@@ -36,10 +36,10 @@ typedef struct s_list
 
 struct s_data
 {
-	char	*argument;
 	int		exit_status;
-	char	*command;
 	int		**fds;
+	int		fd_count;
+	int		fd_to_close;
 	t_list	*env;
 };
 

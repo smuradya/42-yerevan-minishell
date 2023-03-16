@@ -1,10 +1,9 @@
 #include "minishell.h"
 
-void	part_of_run_execve(t_command *command)
+void	part_of_run_execve(t_command *command, char	*path_to_command)
 {
 	int		pid;
 	char	**new_envp;
-	char	*path_to_command;
 
 	pid = fork();
 	if (pid == 0)
@@ -15,6 +14,7 @@ void	part_of_run_execve(t_command *command)
 	}
 	else
 	{
+		free(path_to_command);
 		start_child_signals(0);
 		wait(NULL);
 	}
@@ -23,7 +23,6 @@ void	part_of_run_execve(t_command *command)
 int	run_with_execve(t_command *command)
 {
 	int		pid;
-	char	**new_envp;
 	char	*path_to_command;
 
 	if (is_path_to_command(command->arg[0]))
@@ -31,7 +30,7 @@ int	run_with_execve(t_command *command)
 	path_to_command = check_commands(command->arg[0]);
 	if (path_to_command)
 	{
-		part_of_run_execve(command);
+		part_of_run_execve(command, path_to_command);
 	}
 	else
 	{

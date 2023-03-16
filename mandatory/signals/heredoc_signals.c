@@ -45,6 +45,13 @@ void	handle_sigint_heredoc(int sig)
 	exit(1);
 }
 
+void	handle_sigint_heredoc_child(int sig)
+{
+	(void)sig;
+	rl_redisplay();
+	exit(1);
+}
+
 void	signals_init(void)
 {
 	suppress_output();

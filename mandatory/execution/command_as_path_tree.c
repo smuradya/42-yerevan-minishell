@@ -8,6 +8,7 @@ void	setup_redirections(t_command *command)
 
 	count = command_count(command);
 	g_data->fds = malloc(sizeof(int *) * (count + 1));
+	g_data->fd_count = count + 1;
 	i = -1;
 	while (++i < count + 1)
 		g_data->fds[i] = (int *)malloc(sizeof(int) * 2);
@@ -25,6 +26,7 @@ int	execute_single_command(t_command *command)
 	int	std_in;
 	int	status;
 
+	g_data->fd_count = 0;
 	if (is_builtin(command->arg[0]))
 	{
 		std_out = dup(STDOUT_FILENO);
@@ -53,24 +55,9 @@ t_command	*get_command_with_index(t_command *first, int index)
 
 void	free_data(void)
 {
-	t_node	*tmp;
-
-	tmp = g_data->env->head;
-	if (tmp)
-	{
-		while (tmp != 0)
-		{
-			free(tmp);
-			tmp = tmp->next;
-		}
-	}
-	free (tmp);
-	free (g_data->env);
-	if (g_data)
-	{
-		free(g_data->argument);
-		free(g_data->command);
-	}
+	free_list(g_data->env);
+	if (g_data->fd_count > 0)
+		close_fds(g_data->fds, g_data->fd_count);
 	free (g_data);
 }
 

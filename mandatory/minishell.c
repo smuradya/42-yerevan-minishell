@@ -1,4 +1,3 @@
-
 #include "minishell.h"
 
 t_data	*g_data;
@@ -29,8 +28,12 @@ int	main(int argc, char **argv, char **envp)
 	g_data = malloc(sizeof(t_data));
 	if (start(argc, argv, envp) == 1)
 		return (0);
+	int std_in = dup(STDIN_FILENO);
+	int std_out = dup(STDOUT_FILENO);
 	while (1)
 	{
+		dup2(1, std_out);
+		dup2(0, std_in);
 		line = readline("Minishell% ");
 		if (!line)
 		{
@@ -39,13 +42,16 @@ int	main(int argc, char **argv, char **envp)
 		}
 		add_history(line);
 		if (!line[0])
+		{
+			free(line);
 			continue ;
+		}
 		fill_env = fill_env_parsing(line);
 		if (parsing_line(fill_env, &cmd) == -1)
 			continue ;
 		free (line);
-		//system("leaks minishell");
+		// system("leaks minishell");
 		free (fill_env);
 	}
-	lst_clear();
+	free_list(g_data->env);
 }

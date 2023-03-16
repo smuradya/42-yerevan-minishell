@@ -33,14 +33,19 @@ char	*check_commands(char *command)
 	i = -1;
 	path = split_path();
 	if (!path)
-		return (command);
+		return (NULL);
 	while (path[++i] != 0)
 	{
 		value = extra_strjoin(path[i], command, '/');
 		if (access(value, F_OK | X_OK) == 0)
+		{
+			free_array(path);
 			return (value);
+		}
+		free(value);
 	}
-	return (0);
+	free_array(path);
+	return (NULL);
 }
 
 int	is_builtin(char *cmd)

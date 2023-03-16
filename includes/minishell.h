@@ -38,6 +38,7 @@ extern		t_data *g_data;
 void		start_signals(int g_exit_status);
 void		start_child_signals(int g_exit_status);
 void		handle_sigint_heredoc(int sig);
+void		handle_sigint_heredoc_child(int sig);
 void		child_handler(int sig);
 void		signals_init(void);
 int			ft_signals(void);

@@ -60,6 +60,7 @@
 		"istream": "c",
 		"new": "c",
 		"stdexcept": "c",
-		"streambuf": "c"
+		"streambuf": "c",
+		"_mcontext.h": "c"
 	}
 }
