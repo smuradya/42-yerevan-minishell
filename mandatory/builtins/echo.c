@@ -12,6 +12,34 @@
 
 #include "../includes/minishell.h"
 
+void	*writing_function(char **arg, int i)
+{
+	while (arg[i])
+	{
+		write(1, arg[i], ft_strlen(arg[i]));
+		if (arg[i + 1])
+			write(1, " ", 1);
+		i++;
+	}
+	return (*arg);
+}
+
+void	check_function(char **arg, int flag, int i)
+{
+	if (flag == 0)
+	{
+		i = 1;
+		writing_function(arg, i);
+	}
+	else if (flag == 1)
+	{
+		i = 2;
+		writing_function(arg, i);
+	}
+	if (flag == 0)
+		write(1, "\n", 1);
+}
+
 int	ft_echo(char **arg)
 {
 	int		i;
@@ -35,29 +63,6 @@ int	ft_echo(char **arg)
 		else
 			break ;
 	}
-	if (flag == 0)
-	{
-		i = 1;
-		while (arg[i])
-		{
-			write(1, arg[i], ft_strlen(arg[i]));
-			if (arg[i + 1])
-				write(1, " ", 1);
-			i++;
-		}
-	}
-	else if (flag == 1)
-	{
-		i = 2;
-		while (arg[i])
-		{
-			write(1, arg[i], ft_strlen(arg[i]));
-			if (arg[i + 1])
-				write(1, " ", 1);
-			i++;
-		}
-	}
-	if (flag == 0)
-		write(1, "\n", 1);
+	check_function(arg, flag, i);
 	return (0);
 }

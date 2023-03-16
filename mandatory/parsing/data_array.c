@@ -116,5 +116,3 @@ void	data_array(char *line, char *metachars, t_cmd **cmd)
 	}
 	data_trim(cmd);
 }
-
-//      sdfsd "adfsdf dfsdfsd"

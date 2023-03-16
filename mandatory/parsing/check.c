@@ -32,7 +32,7 @@ int	check_status(char *key, char *value)
 			tmp->value = ft_strdup(value);
 			return (1);
 		}
-		tmp= tmp->next;
+		tmp = tmp->next;
 	}
 	return (0);
 }

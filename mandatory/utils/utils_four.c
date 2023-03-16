@@ -1,4 +1,3 @@
-
 #include "utils.h"
 
 static int	ft_len(int n)
@@ -46,7 +45,6 @@ char	*ft_itoa(int n)
 		str[0] = '-';
 	return (str);
 }
-
 
 void	*ft_memset(void *src, int c, size_t len)
 {

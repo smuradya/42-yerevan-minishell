@@ -30,6 +30,7 @@ int	operators(t_cmd *cmd)
 				ft_putstr_fd("Minishell: Syntax error: unexpected token '", 2);
 				ft_putstr_fd(cmd->value, 2);
 				ft_putstr_fd("'\n", 2);
+				g_data->exit_status = 258;
 				return (-1);
 			}
 		}

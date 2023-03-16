@@ -56,11 +56,11 @@ int	parsing_command(t_cmd **cmd, t_command *command)
 	}
 	if (i == -2)
 	{
-		check_status("?", "258");
+		g_data->exit_status = 258;
 		return (-1);
 	}
 	if (i == -3)
-		check_status("?", "1");
+		g_data->exit_status = 1;
 	if (i < 0)
 		return (-1);
 	return (0);

@@ -15,7 +15,7 @@
 static int	out_of_range(char **line)
 {
 	printf ("%s", "exit");
-	ft_putstr_fd ("Minishell: exit: ", 2 );
+	ft_putstr_fd ("Minishell: exit: ", 2);
 	ft_putstr_fd (line[1], 2);
 	ft_putstr_fd (" numeric argument required\n", 2);
 	g_data->exit_status = 255;
@@ -71,7 +71,7 @@ int	ft_exit(char **line)
 	else if (line[2])
 	{
 		printf ("exit");
-		ft_putstr_fd ("Minishell: exit: too many arguments\n" , 2);
+		ft_putstr_fd ("Minishell: exit: too many arguments\n", 2);
 		return (1);
 	}
 	else

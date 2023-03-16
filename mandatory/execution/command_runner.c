@@ -15,7 +15,7 @@
 int	commands_runner(t_command *command)
 {	
 	int	exit_status;
-	
+
 	exit_status = g_data->exit_status;
 	if (ft_strcmp(command->arg[0], "env") == 0)
 		exit_status = ft_env();

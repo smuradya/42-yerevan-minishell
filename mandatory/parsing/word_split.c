@@ -68,7 +68,7 @@ void	word_splitting(t_cmd **cmd)
 {
 	t_node	*node;
 
-	node = find_node_with_key(g_data->env,"IFS");
+	node = find_node_with_key(g_data->env, "IFS");
 	if (node)
 		search_ifs(cmd, node->value);
 }

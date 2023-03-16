@@ -67,7 +67,7 @@ static int	not_found(t_cmd *cmd, int *i, int j, int quote)
 	t_node	*tmp;
 	int		res;
 
-	tmp =  malloc(sizeof(t_node));
+	tmp = malloc(sizeof(t_node));
 	if (tmp == 0)
 		return (-1);
 	tmp->key = (char *)malloc(sizeof(char) * 2);
@@ -95,10 +95,7 @@ static int	search_and_replace(t_cmd *c, int *i, int q)
 
 	j = *i + 1;
 	tmp = g_data->env->head;
-	while (c->value[j] != ' ' && c->value[j] != '\0' && c->value[j] != '\t'
-		&& c->value[j] != '\"' && c->value[j] != '\'' && c->value[j] != '/'
-		&& c->value[j] != '$' && c->value[j] != '=')
-		j++;
+	value_check(c, &j);
 	new_str = ft_substr(c->value, *i + 1, j - *i - 1);
 	while (tmp != 0)
 	{

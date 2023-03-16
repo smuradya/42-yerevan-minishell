@@ -35,7 +35,6 @@ void	ft_lstadd_back(t_node **node, t_node *new)
 	lst->next = new;
 }
 
-
 int	check_key(char *key, char *value)
 {
 	t_node	*tmp;

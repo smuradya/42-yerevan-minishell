@@ -103,11 +103,3 @@ char	*extra_strjoin(char const *s1, char const *s2, char c)
 	newstr[i + j + 1] = '\0';
 	return (newstr);
 }
-
-int	ft_tolower(int c)
-{
-	if (c >= 65 && c <= 90)
-		return (c + 32);
-	else
-		return (c);
-}

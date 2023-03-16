@@ -73,7 +73,7 @@ void	data_trim(t_cmd **cmd)
 		if (((ft_strlen(tmp1->value) == 0) || tmp1->type == 'd') && \
 				tmp1 == *cmd)
 		{			
-			*cmd = tmp1->next;			
+			*cmd = tmp1->next;
 			lst_delone_data(tmp1, &free);
 			tmp1 = *cmd;
 		}

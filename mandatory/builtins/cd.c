@@ -26,7 +26,7 @@ char	*check_value(char *key)
 	return (0);
 }
 
-void	update_oldpwd()
+void	update_oldpwd(void)
 {
 	char	cwd[1024];
 	char	*old_pwd;
@@ -40,10 +40,10 @@ void	update_oldpwd()
 
 int	ft_cd(char **args)
 {
-	update_oldpwd();
-	t_node	*home_node;
 	int		has_error;
+	t_node	*home_node;
 
+	update_oldpwd();
 	has_error = 0;
 	home_node = find_node_with_key(g_data->env, "HOME");
 	if (!home_node)

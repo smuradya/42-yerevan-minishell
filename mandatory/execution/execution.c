@@ -12,15 +12,15 @@
 
 #include  "minishell.h"
 
-static char	**split_path()
+static char	**split_path(void)
 {
-	char	*paths;
+	t_node	*paths;
 	char	**splitted_path;
 
-	paths = getenv("PATH");
+	paths = find_node_with_key(g_data->env, "PATH");
 	if (!paths)
 		return (NULL);
-	splitted_path = ft_split(paths, ':');
+	splitted_path = ft_split(paths->value, ':');
 	return (splitted_path);
 }
 
@@ -47,7 +47,7 @@ int	is_builtin(char *cmd)
 {
 	return (!ft_strcmp(cmd, "echo") || !ft_strcmp(cmd, "cd")
 		|| !ft_strcmp(cmd, "pwd") || !ft_strcmp(cmd, "export")
-		|| !ft_strcmp(cmd, "unset") || !ft_strcmp(cmd, "env") 
+		|| !ft_strcmp(cmd, "unset") || !ft_strcmp(cmd, "env")
 		|| !ft_strcmp(cmd, "exit"));
 }
 
@@ -61,12 +61,12 @@ t_string	get_env_row(t_node *node)
 	{
 		tmp = env_row;
 		env_row = ft_strjoin(tmp, node->value);
-		free(tmp); 
+		free(tmp);
 	}
 	return (env_row);
 }
 
-char	**list_to_env()
+char	**list_to_env(void)
 {
 	int		i;
 	char	**new_envp;

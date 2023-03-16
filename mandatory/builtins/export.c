@@ -45,6 +45,15 @@ int	export_with_no_args(t_list *list)
 	return (0);
 }
 
+void	node_create(char **splitted, t_node *node)
+{
+	if (splitted[0])
+	{
+		node = new_node(splitted[0], splitted[1]);
+		add(g_data->env, node);
+	}
+}
+
 int	ft_export(char **argument)
 {
 	int		i;
@@ -65,13 +74,8 @@ int	ft_export(char **argument)
 			if (node)
 				update_with_key(g_data->env, splitted[0], splitted[1]);
 			else
-			{
-				if (splitted[0])
-				{
-					node = new_node(splitted[0], splitted[1]);
-					add(g_data->env, node);
-				}
-			}
+				node_create(splitted, node);
+			free_array (splitted);
 		}
 		else
 			has_error = 1;
