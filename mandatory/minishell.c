@@ -60,7 +60,7 @@ int	main(int argc, char **argv, char **envp)
 			continue ;
 		free (line);
 		free (fill_env);
-		system("leaks minishell");
+		//system("leaks minishell");
 	}
 	free_list(g_data->env);
 }

@@ -67,6 +67,10 @@ void	remove_with_key(t_list *list, char *key)
 		removing_node->next->prev = removing_node->prev;
 	if (removing_node->prev)
 		removing_node->prev->next = removing_node->next;
+	if (removing_node->key)
+		free(removing_node->key);
+	if (removing_node->value)
+		free(removing_node->value);
 	free(removing_node);
 	list->count--;
 }
