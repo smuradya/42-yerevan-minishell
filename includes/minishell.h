@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   lst_new_elem.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syeghiaz <syeghiaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anhakob2 <anhakob2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/05 14:43:42 by tumolabs          #+#    #+#             */
-/*   Updated: 2023/03/15 22:35:31 by syeghiaz         ###   ########.fr       */
+/*   Created: 2023/01/20 16:58:12 by anhakob2          #+#    #+#             */
+/*   Updated: 2023/01/21 19:50:29 by anhakob2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ extern		t_data *g_data;
 
 //signals
 
-void		start_signals(int g_exit_status);
+void		start_signals(void);
 void		start_child_signals(int g_exit_status);
 void		handle_sigint_heredoc(int sig);
 void		handle_sigint_heredoc_child(int sig);

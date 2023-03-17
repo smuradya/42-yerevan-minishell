@@ -31,4 +31,5 @@ void	change_shlvl(void)
 		}
 		tmp = tmp->next;
 	}
+	free(val);
 }

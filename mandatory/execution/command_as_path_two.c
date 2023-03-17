@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lst_new_elem.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anhakob2 <anhakob2@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/20 16:58:12 by anhakob2          #+#    #+#             */
+/*   Updated: 2023/01/21 19:50:29 by anhakob2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 void	part_of_run_execve(t_command *command, char	*path_to_command)
@@ -22,9 +34,10 @@ void	part_of_run_execve(t_command *command, char	*path_to_command)
 
 int	run_with_execve(t_command *command)
 {
-	int		pid;
+	// int		pid;
 	char	*path_to_command;
 
+	// (void)pid;
 	if (is_path_to_command(command->arg[0]))
 		return (execute_path_as_command(command));
 	path_to_command = check_commands(command->arg[0]);
@@ -39,7 +52,7 @@ int	run_with_execve(t_command *command)
 		ft_putstr_fd(": command not found\n", 2);
 		return (127);
 	}
-	start_signals(0);
+	start_signals();
 	return (0);
 }
 

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lst_new_elem.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anhakob2 <anhakob2@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/20 16:58:12 by anhakob2          #+#    #+#             */
+/*   Updated: 2023/01/21 19:50:29 by anhakob2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 static void	handle_sigquit(int sig)
@@ -22,9 +34,8 @@ void	start_child_signals(int g_exit_status)
 	signal(SIGQUIT, handle_child_sigquit);
 }
 
-void	start_signals(int g_exit_status)
+void	start_signals(void)
 {
-	g_exit_status = 0;
 	rl_catch_signals = 0;
 	rl_event_hook = ft_signals;
 	signal(SIGINT, handler);

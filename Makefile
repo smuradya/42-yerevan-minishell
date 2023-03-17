@@ -4,7 +4,7 @@ OBJS		= ${SRCS:.c=.o}
 CC			= cc
 LFLAGS      = -L./readlinemaster/lib -lreadline
 INCLUDES	= ./includes
-CFLAGS		=  -I./readlinemaster/include  #-fsanitize=address -g -Wall -Werror -Wextra
+CFLAGS		=  -Wall -Werror -Wextra  -I./readlinemaster/include  #-fsanitize=address -g
 RD 			= ${shell find ${HOME} -name readlinemaster 2>/dev/null}
 RM			= rm -f
 

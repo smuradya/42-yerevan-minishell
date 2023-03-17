@@ -1,10 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lst_new_elem.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anhakob2 <anhakob2@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/20 16:58:12 by anhakob2          #+#    #+#             */
+/*   Updated: 2023/01/21 19:50:29 by anhakob2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 void	setup_redirections(t_command *command)
 {
 	int			i;
 	int			count;
-	t_command	*tail;
 
 	count = command_count(command);
 	g_data->fds = malloc(sizeof(int *) * (count + 1));

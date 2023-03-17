@@ -21,6 +21,7 @@ int	execute_child(t_command *command, int child_index, int *pid)
 {
 	int	status;
 
+	status = 0;
 	if (command->in == -1)
 	{
 		write(2, "some text here\n", 15);
