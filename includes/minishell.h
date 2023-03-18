@@ -6,7 +6,7 @@
 /*   By: smuradya <smuradya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 16:58:12 by anhakob2          #+#    #+#             */
-/*   Updated: 2023/03/18 18:48:44 by smuradya         ###   ########.fr       */
+/*   Updated: 2023/03/18 20:14:50 by smuradya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # include <readline/readline.h>
 
 // global variable
-extern		t_data *g_data;
+extern t_data	*g_data;
 
 //signals
 
@@ -42,7 +42,8 @@ void		signals_init(void);
 int			ft_signals(void);
 void		handler(int sig);
 int			hook_signals(void);
-
+int			check_and_add_history(char *line);
+char		*readline_(void);
 //builtins
 
 void		print_tokens(t_cmd **cmd);

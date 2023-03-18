@@ -6,7 +6,7 @@
 /*   By: smuradya <smuradya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 16:58:12 by anhakob2          #+#    #+#             */
-/*   Updated: 2023/03/18 19:35:31 by smuradya         ###   ########.fr       */
+/*   Updated: 2023/03/18 20:13:38 by smuradya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,6 @@ static int	start(int argc, char **argv, char **envp)
 	return (0);
 }
 
-int	not_printable(char ch)
-{
-	return (ch <= 31);
-}
-
 int	main(int argc, char **argv, char **envp)
 {
 	char	*line;
@@ -47,26 +42,19 @@ int	main(int argc, char **argv, char **envp)
 		return (0);
 	while (1)
 	{
-		start_signals();
-		rl_catch_signals = 0;
-		line = readline("Minishell% ");
+		line = readline_();
 		if (!line)
 		{
 			write (1, "exit", 5);
 			return (0);
 		}
-		add_history(line);
-		if (!line[0] || not_printable(line[0]))
-		{
-			free(line);
+		if (!check_and_add_history(line))
 			continue ;
-		}
 		rl_catch_signals = 1;
 		fill_env = fill_env_parsing(line);
 		parsing_line(fill_env, &cmd);
 		free (line);
 		free (fill_env);
-		system("leaks minishell");
 	}
 	free_list(g_data->env);
 }
