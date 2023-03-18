@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_new_elem.c                                     :+:      :+:    :+:   */
+/*   command_as_path_tree.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anhakob2 <anhakob2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smuradya <smuradya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 16:58:12 by anhakob2          #+#    #+#             */
-/*   Updated: 2023/01/21 19:50:29 by anhakob2         ###   ########.fr       */
+/*   Updated: 2023/03/18 21:48:07 by smuradya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ t_command	*get_command_with_index(t_command *first, int index)
 
 void	free_data(void)
 {
-	free_list(g_data->env);
 	if (g_data->fd_count > 0)
 		close_fds(g_data->fds, g_data->fd_count);
 	free (g_data);
