@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_new_elem.c                                     :+:      :+:    :+:   */
+/*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anhakob2 <anhakob2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smuradya <smuradya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 16:58:12 by anhakob2          #+#    #+#             */
-/*   Updated: 2023/01/21 19:50:29 by anhakob2         ###   ########.fr       */
+/*   Updated: 2023/03/18 19:35:31 by smuradya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,15 @@ static int	start(int argc, char **argv, char **envp)
 		ft_putstr_fd("More than one argument\n", 2);
 		return (1);
 	}
-	signals_init();
-	// start_signals(g_exit_status);
+	start_signals();
 	fill_environmental(envp);
 	change_shlvl();
 	return (0);
+}
+
+int	not_printable(char ch)
+{
+	return (ch <= 31);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -43,6 +47,8 @@ int	main(int argc, char **argv, char **envp)
 		return (0);
 	while (1)
 	{
+		start_signals();
+		rl_catch_signals = 0;
 		line = readline("Minishell% ");
 		if (!line)
 		{
@@ -50,17 +56,17 @@ int	main(int argc, char **argv, char **envp)
 			return (0);
 		}
 		add_history(line);
-		if (!line[0])
+		if (!line[0] || not_printable(line[0]))
 		{
 			free(line);
 			continue ;
 		}
+		rl_catch_signals = 1;
 		fill_env = fill_env_parsing(line);
-		if (parsing_line(fill_env, &cmd) == -1)
-			continue ;
+		parsing_line(fill_env, &cmd);
 		free (line);
 		free (fill_env);
-		//system("leaks minishell");
+		system("leaks minishell");
 	}
 	free_list(g_data->env);
 }

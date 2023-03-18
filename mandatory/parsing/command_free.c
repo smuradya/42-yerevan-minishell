@@ -6,7 +6,7 @@
 /*   By: smuradya <smuradya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 14:27:34 by smuradya          #+#    #+#             */
-/*   Updated: 2023/03/02 14:27:38 by smuradya         ###   ########.fr       */
+/*   Updated: 2023/03/18 19:16:53 by smuradya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@ void	command_free(t_command *command)
 	int	i;
 
 	i = -1;
-	if (command != 0)
+	if (command)
 	{
-		if (command->arg != 0)
+		if (command->arg)
 		{
-			while (command->arg[++i] != 0)
+			while (command->arg[++i])
 				free(command->arg[i]);
 			free(command->arg);
 		}
-		if (command->oper != 0)
+		if (command->oper)
 			free(command->oper);
-		if (command->oper_value != 0)
+		if (command->oper_value)
 			free(command->oper_value);
 		free(command);
 	}

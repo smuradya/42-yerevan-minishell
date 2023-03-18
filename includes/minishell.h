@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_new_elem.c                                     :+:      :+:    :+:   */
+/*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anhakob2 <anhakob2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smuradya <smuradya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 16:58:12 by anhakob2          #+#    #+#             */
-/*   Updated: 2023/01/21 19:50:29 by anhakob2         ###   ########.fr       */
+/*   Updated: 2023/03/18 18:48:44 by smuradya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,12 @@ extern		t_data *g_data;
 //signals
 
 void		start_signals(void);
-void		start_child_signals(int g_exit_status);
-void		handle_sigint_heredoc(int sig);
-void		handle_sigint_heredoc_child(int sig);
+void		start_child_signals(void);
 void		child_handler(int sig);
 void		signals_init(void);
 int			ft_signals(void);
 void		handler(int sig);
+int			hook_signals(void);
 
 //builtins
 
@@ -117,7 +116,7 @@ void		word_splitting(t_cmd **cmd);
 void		p_expansion(t_cmd *cmd);
 int			arg_count(t_cmd **cmd, t_command *command);
 int			check_status(char *key, char *value);
-int			parsing_line(char *line, t_cmd **cmd);
+void		parsing_line(char *line, t_cmd **cmd);
 void		data_array(char *line, char *metachars, t_cmd **cmd);
 int			parsing_opers(t_cmd **cmd, t_command *command);
 int			data_to_struct(t_cmd **cmd, t_command **command);

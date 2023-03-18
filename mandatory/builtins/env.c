@@ -22,7 +22,7 @@ t_node	*lst_new_elem(char *name, char *value)
 {
 	t_node	*new_elem;
 
-	new_elem = (t_node *)malloc(sizeof(t_node));
+	new_elem = malloc(sizeof(t_node));
 	if (!new_elem)
 		return (0);
 	new_elem->key = name;

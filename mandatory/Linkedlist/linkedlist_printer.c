@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   linkedlist_printer.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syeghiaz <syeghiaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smuradya <smuradya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/05 15:06:23 by tumolabs          #+#    #+#             */
-/*   Updated: 2023/03/15 19:39:12 by syeghiaz         ###   ########.fr       */
+/*   Created: 2023/03/18 19:32:36 by smuradya          #+#    #+#             */
+/*   Updated: 2023/03/18 19:32:38 by smuradya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

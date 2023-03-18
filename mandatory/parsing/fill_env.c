@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_new_elem.c                                     :+:      :+:    :+:   */
+/*   fill_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anhakob2 <anhakob2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smuradya <smuradya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 16:58:12 by anhakob2          #+#    #+#             */
-/*   Updated: 2023/01/21 19:50:29 by anhakob2         ###   ########.fr       */
+/*   Updated: 2023/03/18 19:27:18 by smuradya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ t_node	*get_env_node(char *env_var, int *e_start)
 {
 	int		i;
 	char	*envir_key;
+	t_node	*node;
 
 	i = 0;
 	while (env_var[*e_start + i] && (is_numeric(env_var[*e_start + i])
@@ -89,7 +90,9 @@ t_node	*get_env_node(char *env_var, int *e_start)
 	}
 	envir_key[i] = 0;
 	*e_start += (i - 1);
-	return (find_node_with_key(g_data->env, envir_key));
+	node = find_node_with_key(g_data->env, envir_key);
+	free(envir_key);
+	return (node);
 }
 
 void	fill_from_env(char *env_var, int *e_start, char *copy_to, int *start)

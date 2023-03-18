@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_new_elem.c                                     :+:      :+:    :+:   */
+/*   signal_two.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anhakob2 <anhakob2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smuradya <smuradya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 16:58:12 by anhakob2          #+#    #+#             */
-/*   Updated: 2023/01/21 19:50:29 by anhakob2         ###   ########.fr       */
+/*   Updated: 2023/03/18 19:29:17 by smuradya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,21 @@ static void	handle_child_sigquit(int sig)
 	rl_redisplay();
 }
 
-void	start_child_signals(int g_exit_status)
+void	start_child_signals(void)
 {
-	g_exit_status = 0;
-	rl_catch_signals = 0;
-	rl_event_hook = ft_signals;
 	signal(SIGINT, child_handler);
 	signal(SIGQUIT, handle_child_sigquit);
 }
 
 void	start_signals(void)
 {
-	rl_catch_signals = 0;
 	rl_event_hook = ft_signals;
+	signal(SIGINT, handler);
+	signal(SIGQUIT, handle_sigquit);
+}
+
+void	start_heredoc_signals(void)
+{
 	signal(SIGINT, handler);
 	signal(SIGQUIT, handle_sigquit);
 }

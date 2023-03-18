@@ -22,7 +22,7 @@ topdir = ..
 srcdir = .
 
 
-prefix = /Users/tumolabs/Desktop/42-yerevan-minishell/readlinemaster
+prefix = /Users/smuradya/Desktop/GIT_FIN/readlinemaster
 
 datarootdir = ${prefix}/share
 
@@ -49,7 +49,7 @@ RM = rm -f
 INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
 
-BUILD_DIR = /Users/tumolabs/Desktop/42-yerevan-minishell/readline-master
+BUILD_DIR = /Users/smuradya/Desktop/GIT_FIN/readline-master
 TEXINPUTDIR = $(srcdir)
 
 MAKEINFO    = LANGUAGE= makeinfo

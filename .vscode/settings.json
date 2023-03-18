@@ -61,6 +61,7 @@
 		"new": "c",
 		"stdexcept": "c",
 		"streambuf": "c",
-		"_mcontext.h": "c"
+		"_mcontext.h": "c",
+		"readline.h": "c"
 	}
 }

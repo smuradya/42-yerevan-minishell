@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_new_elem.c                                     :+:      :+:    :+:   */
+/*   command_as_path_two.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anhakob2 <anhakob2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smuradya <smuradya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 16:58:12 by anhakob2          #+#    #+#             */
-/*   Updated: 2023/01/21 19:50:29 by anhakob2         ###   ########.fr       */
+/*   Updated: 2023/03/18 19:28:49 by smuradya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,15 @@ void	part_of_run_execve(t_command *command, char	*path_to_command)
 	else
 	{
 		free(path_to_command);
-		start_child_signals(0);
+		start_child_signals();
 		wait(NULL);
 	}
 }
 
 int	run_with_execve(t_command *command)
 {
-	// int		pid;
 	char	*path_to_command;
 
-	// (void)pid;
 	if (is_path_to_command(command->arg[0]))
 		return (execute_path_as_command(command));
 	path_to_command = check_commands(command->arg[0]);
@@ -52,7 +50,7 @@ int	run_with_execve(t_command *command)
 		ft_putstr_fd(": command not found\n", 2);
 		return (127);
 	}
-	start_signals();
+	start_child_signals();
 	return (0);
 }
 

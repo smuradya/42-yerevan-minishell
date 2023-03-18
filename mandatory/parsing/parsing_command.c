@@ -59,7 +59,7 @@ int	parsing_command(t_cmd **cmd, t_command *command)
 		g_data->exit_status = 258;
 		return (-1);
 	}
-	if (i == -3)
+	if (i == -3 || i == -4)
 		g_data->exit_status = 1;
 	if (i < 0)
 		return (-1);

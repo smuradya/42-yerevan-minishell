@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syeghiaz <syeghiaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smuradya <smuradya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 20:27:53 by anhakob2          #+#    #+#             */
-/*   Updated: 2023/03/15 22:23:11 by syeghiaz         ###   ########.fr       */
+/*   Updated: 2023/03/18 19:29:53 by smuradya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ static void	go_heredoc(t_command *command, int fd_doc)
 
 static void	heredoc_one(t_command *command, int *heredoc)
 {
-	signal(SIGINT, handle_sigint_heredoc_child);
+	signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, SIG_DFL);
 	close(heredoc[0]);
 	go_heredoc(command, heredoc[1]);
 	close(heredoc[1]);
@@ -70,9 +71,9 @@ static int	heredoc_two(t_command *command, int *heredoc)
 {
 	int	exit_status;
 
-	g_data->fd_to_close = heredoc[0];
+	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, SIG_IGN);
-	wait(&exit_status);
+	waitpid(-1, &exit_status, 0);
 	close(heredoc[1]);
 	if (WIFEXITED(exit_status))
 	{
@@ -85,7 +86,12 @@ static int	heredoc_two(t_command *command, int *heredoc)
 			command->in = dup(heredoc[0]);
 		close(heredoc[0]);
 	}
-	signals_init();
+	start_child_signals();
+	if (WIFSIGNALED(exit_status))
+	{
+		write(1, "\n", 1);
+		return (-4);
+	}
 	return (0);
 }
 

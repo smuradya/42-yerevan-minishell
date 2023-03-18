@@ -14,15 +14,18 @@
 
 static void	clear_all(t_command **command, t_cmd **cmd)
 {
+	t_command	*tmp;
+
 	lst_clear_data(cmd, &free);
 	while (*command != 0)
 	{
+		tmp = (*command)->next;
 		command_free(*command);
-		*command = (*command)->next;
+		*command = tmp;
 	}
 }
 
-int	parsing_line(char *line, t_cmd **cmd)
+void	parsing_line(char *line, t_cmd **cmd)
 {
 	int			count;
 	char		metachars[11];
@@ -36,13 +39,13 @@ int	parsing_line(char *line, t_cmd **cmd)
 	{
 		data_array(line, metachars, cmd);
 		if (operators(*cmd) == -1)
-		{
 			lst_clear_data(cmd, &free);
-			return (-1);
-		}
 		if (data_to_struct(cmd, &command) == 0)
 			g_data->exit_status = exec_run(command);
+		else
+		{
+			clear_all(&command, cmd);
+		}
 		clear_all(&command, cmd);
 	}
-	return (1);
 }
